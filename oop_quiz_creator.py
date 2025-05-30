@@ -2,6 +2,23 @@ class QuizCreator:
     def __init__(self, filename="quiz_data.txt"):
         self.filename = filename
         print("\nWelcome to the Quiz Creator!")
+        self.ask_reset_file()
+
+    def ask_reset_file(self):
+        while True:
+            reset = input(f"Do you want to reset '{self.filename}' before starting? (yes/no): ").lower()
+            if reset in ["yes", "y"]:
+                self.reset_quiz_data()
+                break
+            elif reset in ["no", "n"]:
+                break
+            else:
+                print("❌ Invalid input. Please enter 'yes' or 'no'.")
+
+    def reset_quiz_data(self):
+        with open(self.filename, "w") as file:
+            pass
+        print(f"🧹 Quiz data has been reset! '{self.filename}' is now empty.")
 
     def get_question_data(self):
         print("\nEnter your quiz questions and choices:")
